@@ -20,6 +20,15 @@ class MealRepository
     save_csv
   end
 
+  def update
+	  save_csv
+	end
+
+	def destroy(index)
+	  @meals.delete_at(index)
+	  save_csv
+	end
+
   private
 
   def load_csv
@@ -43,7 +52,7 @@ class MealRepository
 
   def save_csv
     CSV.open(@csv_file_path, "wb") do |csv|
-      csv << %w(id, name, price)
+      csv << %w(id name price)
       @meals.each do |meal|
         csv << [meal.id, meal.name, meal.price]
       end

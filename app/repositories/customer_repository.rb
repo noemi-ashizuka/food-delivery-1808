@@ -20,6 +20,16 @@ class CustomerRepository
     save_csv
   end
 
+  def update
+	  save_csv
+	end
+
+	def destroy(index)
+    p @customers
+	  @customers.delete_at(index)
+	  save_csv
+	end
+
   private
 
   def load_csv
@@ -41,7 +51,7 @@ class CustomerRepository
 
   def save_csv
     CSV.open(@csv_file_path, "wb") do |csv|
-      csv << %w(id, name, address)
+      csv << %w(id name address)
       @customers.each do |customer|
         csv << [customer.id, customer.name, customer.address]
       end
