@@ -43,7 +43,7 @@ class MealRepository
 
   def save_csv
     CSV.open(@csv_file_path, "wb") do |csv|
-      csv << %w(id, name, price)
+      csv << %w(id name price)
       @meals.each do |meal|
         csv << [meal.id, meal.name, meal.price]
       end

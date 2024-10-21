@@ -41,7 +41,7 @@ class CustomerRepository
 
   def save_csv
     CSV.open(@csv_file_path, "wb") do |csv|
-      csv << %w(id, name, address)
+      csv << %w(id name address)
       @customers.each do |customer|
         csv << [customer.id, customer.name, customer.address]
       end
